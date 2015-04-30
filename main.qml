@@ -6,8 +6,8 @@ import "CatGenerator.js" as CatGen
 
 ApplicationWindow {
     title: qsTr("Hello World")
-    width: 640
-    height: 480
+    width: Screen.width
+    height: Screen.width
     visible: true
 
     property real defaultSize: Screen.width / 2.5
@@ -35,19 +35,9 @@ ApplicationWindow {
         }
     }
 
-
     MainForm {
         id: backgroundParent
-
-        MultiPointTouchArea {
-            anchors.fill: parent
-            z:99
-            touchPoints: [
-                TouchPoint {
-                    id: point1
-                }
-            ]
-        }
+        anchors.fill: parent
 
         Rectangle {
             id: photoFrame
@@ -97,17 +87,6 @@ ApplicationWindow {
                 }
             }
         }
-
-        Image {
-            id: mustacheImage
-            width: 280; height: 280
-            fillMode: Image.PreserveAspectFit
-            z: 100
-            x: point1.x - 50
-            y: point1.y - 50
-            source: "https://a.pomf.se/qsjwte.png"
-        }
-        anchors.fill: parent
 
         Component.onCompleted: {
             CatGen.fetchCatBackground();
